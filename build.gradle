@@ -1,0 +1,50 @@
+plugins {
+    id 'groovy'
+    id 'org.springframework.boot' version '3.2.4'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_18
+    targetCompatibility = JavaVersion.VERSION_18
+}
+
+tasks.withType(JavaCompile) {
+    sourceCompatibility = JavaVersion.VERSION_18
+    targetCompatibility = JavaVersion.VERSION_18
+}
+
+tasks.withType(GroovyCompile) {
+    sourceCompatibility = JavaVersion.VERSION_18
+    targetCompatibility = JavaVersion.VERSION_18
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.codehaus.groovy:groovy-all:3.0.19'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
+
+    implementation('io.github.vishalmysore:a2ajava:0.1.8.2') {
+        exclude group: 'io.swagger.core.v3', module: 'swagger-core'
+        exclude group: 'io.swagger.core.v3', module: 'swagger-core-jakarta'
+        exclude group: 'io.swagger.parser.v3', module: 'swagger-parser'
+    }
+    implementation 'io.github.vishalmysore:tools4ai-annotations:0.0.2'
+    implementation('io.github.vishalmysore:tools4ai:1.1.5') {
+        exclude group: 'io.swagger.core.v3', module: 'swagger-core'
+        exclude group: 'io.swagger.core.v3', module: 'swagger-core-jakarta'
+        exclude group: 'io.swagger.parser.v3', module: 'swagger-parser'
+    }
+    implementation 'io.swagger.core.v3:swagger-core-jakarta:2.2.19'
+    implementation 'org.apache.httpcomponents.client5:httpclient5:5.2.1'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
